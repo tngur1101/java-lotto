@@ -14,7 +14,7 @@ public class Player {
     int lottoCount;
     static final int LOTTO_PRICE = 1000;
     List<Lotto> lottoList = new ArrayList<>();
-    int[] playerLottoNumbers;
+    Lotto playerLottoNumbers;
     int bonus;
 
     public Player() {
@@ -22,6 +22,14 @@ public class Player {
         makeLotto();
         inputLotto();
         inputBonus();
+    }
+
+    public Lotto getPlayerLotto(){
+        return playerLottoNumbers;
+    }
+
+    public int getBonus(){
+        return bonus;
     }
 
     public void purchaseLotto(){
@@ -38,11 +46,13 @@ public class Player {
         ViewLotto.askLottoNumber();
         String playerLottoNumber = Console.readLine();
         String[] playerLotto = playerLottoNumber.split(",");
-        playerLottoNumbers = new int[playerLotto.length];
+        List<Integer> playerLottoNum = new ArrayList<>();
         for(int i=0;i<playerLotto.length;i++){
             validateInputIsNumber(playerLotto[i]);
-            playerLottoNumbers[i] = Integer.parseInt(playerLotto[i]);
+            playerLottoNum.add(Integer.parseInt(playerLotto[i]));
         }
+
+        playerLottoNumbers = new Lotto(playerLottoNum);
     }
 
     public void inputBonus(){
