@@ -2,16 +2,13 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private final int startNumber = 1;
-    private final int endNumber = 45;
-    private final int selectNumberCount = 6;
+    private static final int startNumber = 1;
+    private static final int endNumber = 45;
+    private static final int selectNumberCount = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -19,12 +16,11 @@ public class Lotto {
     }
 
     public List<Integer> getLotto(){
-        sortLottoNumber(numbers);
         return numbers;
     }
 
-    private List<Integer> createLottoNumber(){
-        List<Integer> randomnumbers = Randoms.pickUniqueNumbersInRange(startNumber, endNumber, selectNumberCount);
+    public static List<Integer> createLottoNumber(){
+        List<Integer> randomnumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(startNumber, endNumber, selectNumberCount));
         return randomnumbers;
     }
 
@@ -40,9 +36,8 @@ public class Lotto {
         }
     }
 
-    private List<Integer> sortLottoNumber(List<Integer> numbers){
+    public static void sortLottoNumber(List<Integer> numbers){
         Collections.sort(numbers);
-        return numbers;
     }
 
     // TODO: 추가 기능 구현
