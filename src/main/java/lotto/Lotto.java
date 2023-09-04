@@ -36,6 +36,10 @@ public class Lotto {
         }
     }
 
+    public boolean isContain(int number){
+        return numbers.contains(number);
+    }
+
     public static void sortLottoNumber(List<Integer> numbers){
         Collections.sort(numbers);
     }
