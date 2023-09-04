@@ -14,23 +14,13 @@ public class Player {
     int lottoCount;
     static final int LOTTO_PRICE = 1000;
     List<Lotto> lottoList = new ArrayList<>();
-    Lotto playerLottoNumbers;
-    int bonus;
+
 
     public Player() {
         purchaseLotto();
         makeLotto();
-        inputLotto();
-        inputBonus();
     }
 
-    public Lotto getPlayerLotto(){
-        return playerLottoNumbers;
-    }
-
-    public int getBonus(){
-        return bonus;
-    }
 
     public void purchaseLotto(){
         ViewLotto.askPurchasePrice();
@@ -40,26 +30,6 @@ public class Player {
         validateCanDivideWithThousand();
         lottoCount = playerPurchasePrice/LOTTO_PRICE;
         ViewLotto.alertPurchasedLottoCount(lottoCount);
-    }
-
-    public void inputLotto(){
-        ViewLotto.askLottoNumber();
-        String playerLottoNumber = Console.readLine();
-        String[] playerLotto = playerLottoNumber.split(",");
-        List<Integer> playerLottoNum = new ArrayList<>();
-        for(int i=0;i<playerLotto.length;i++){
-            validateInputIsNumber(playerLotto[i]);
-            playerLottoNum.add(Integer.parseInt(playerLotto[i]));
-        }
-
-        playerLottoNumbers = new Lotto(playerLottoNum);
-    }
-
-    public void inputBonus(){
-        ViewLotto.askBonusNumber();
-        String playerBonusNumber = Console.readLine();
-        validateInputIsNumber(playerBonusNumber);
-        bonus = Integer.parseInt(playerBonusNumber);
     }
 
     public void makeLotto(){
@@ -75,7 +45,7 @@ public class Player {
         }
     }
 
-    public void validateInputIsNumber(String playerInput){
+    public static void validateInputIsNumber(String playerInput){
         try{
             Integer.parseInt(playerInput);
         }catch (NumberFormatException e){
