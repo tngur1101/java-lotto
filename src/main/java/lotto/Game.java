@@ -16,6 +16,18 @@ public class Game {
         int[] result = matchLotto(player.lottoList, computer.getPlayerLotto(), computer.getBonus());
     }
 
+    public void calculateBenefitPercent(int[] result){
+        double spentMoney = player.playerPurchasePrice;
+        double earnedMoney = 0;
+
+        for(WinningRank c : WinningRank.values()){
+            earnedMoney += c.calculatePrizeMoney(result[c.MATCH_NUMBER_COUNT]);
+        }
+
+        double benefit = earnedMoney/spentMoney*100;
+        ViewLotto.printEarningRate();
+    }
+
     private int[] matchLotto(List<Lotto> lottoList, Lotto playerLotto, int bonus) {
         int[] matchresult = new int[6];
 
