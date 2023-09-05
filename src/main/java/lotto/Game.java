@@ -5,10 +5,26 @@ import view.ViewLotto;
 import java.util.List;
 
 public class Game {
-
+    Player player;
+    Computer computer;
     public Game(){
-        Player player = new Player();
-        Computer computer = new Computer();
+        player = new Player();
+        computer = new Computer();
+    }
+
+    public void startGame(){
+        int[] result = matchLotto(player.lottoList, computer.getPlayerLotto(), computer.getBonus());
+    }
+
+    private int[] matchLotto(List<Lotto> lottoList, Lotto playerLotto, int bonus) {
+        int[] matchresult = new int[6];
+
+        for (Lotto lotto : lottoList) {
+            int score = getRank(lotto, playerLotto, bonus);
+            matchresult[score] += 1;
+        }
+
+        return matchresult;
     }
 
     public int getRank(Lotto lotto, Lotto playerLottoNumbers, int bonus){
